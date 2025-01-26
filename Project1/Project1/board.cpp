@@ -38,3 +38,28 @@ void Board::PrintBoard() {
     }
     cout << "  a b c d e f g h" << endl;
 }
+
+bool Board::MovePiece(std::string from, std::string to, bool isWhiteTurn) {
+    int fromX = 8 - (from[1] - '0');
+    int fromY = from[0] - 'a';
+    int toX = 8 - (to[1] - '0');
+    int toY = to[0] - 'a';
+
+    if (fromX < 0 || fromX >= 8 || fromY < 0 || fromY >= 8 ||
+        toX < 0 || toX >= 8 || toY < 0 || toY >= 8) {
+        return false;
+    }
+
+    Piece& piece = board[fromX][fromY];
+    if (!piece.IsValidMove(toX, toY, board, isWhiteTurn)) {
+        return false;
+    }
+
+    piece.x = toX;
+    piece.y = toY;
+
+    board[toX][toY] = piece;
+    board[fromX][fromY] = Piece('*', fromX, fromY);
+
+    return true;
+}
