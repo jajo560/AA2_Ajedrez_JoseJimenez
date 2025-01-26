@@ -6,3 +6,5 @@ private:
 
 public:
     int x, y;
+
+};
