@@ -13,5 +13,6 @@ public:
     void Initialize();
     void PrintBoard();
     bool MovePiece(std::string from, std::string to, bool isWhiteTurn);
+    bool IsCheckmate(bool isWhiteTurn);
 
 };

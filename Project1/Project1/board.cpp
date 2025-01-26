@@ -63,3 +63,15 @@ bool Board::MovePiece(std::string from, std::string to, bool isWhiteTurn) {
 
     return true;
 }
+
+bool Board::IsCheckmate(bool isWhiteTurn) {
+    char king = isWhiteTurn ? 'k' : 'K';
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (board[i][j].GetSymbol() == king) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
